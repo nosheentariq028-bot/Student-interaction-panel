@@ -1,0 +1,57 @@
+import React, { useState, useEffect } from 'react';
+
+function StudentInteractionPanel() {
+  // Login Status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Click Counter
+  const [clickCount, setClickCount] = useState(0);
+
+  // Theme Switcher
+  const [theme, setTheme] = useState('light');
+
+  // Feedback Input
+  const [feedback, setFeedback] = useState('');
+
+  // Component Load Message
+  useEffect(() => {
+    console.log('Component Loaded');
+  }, []);
+
+  return (
+    <div style={{
+      backgroundColor: theme === 'light' ? '               
+      color: theme === 'light' ? '#333' : '#fff',
+      padding: '20px',
+      minHeight: '100vh'
+    }}>
+      <h1>Student Interaction Panel</h1>
+
+      <!-- Login Status -->
+      <p>{isLoggedIn ? 'User Logged In' : 'User Logged Out'}</p>
+      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        {isLoggedIn ? 'Logout' : 'Login'}
+      </button>
+
+      <!-- Click Counter -->
+      <p>Button Clicks: {clickCount}</p>
+      <button onClick={() => setClickCount(clickCount + 1)}>Click Me</button>
+
+      <!-- Theme Switcher -->
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+      </button>
+
+      <!-- Feedback Input -->
+      <input
+        type="text"
+        value={feedback}
+        onChange={(e) => setFeedback(e.target.value)}
+        placeholder="Enter feedback"
+      />
+      <p>Feedback: {feedback}</p>
+    </div>
+  );
+}
+
+export default StudentInteractionPanel;
